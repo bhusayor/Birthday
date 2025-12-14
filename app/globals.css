@@ -21,3 +21,9 @@ body {
     color: var(--background);
     font-family: Arial, Helvetica, sans-serif;
 }
+
+.custom-clip {
+    /* clip-path: polygon(0% 0%, 100% 0%, 100% 90%, 10% 90%, 0 99%, 0 74%, 0% 75%); */
+    /* clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 19% 77%, 0 88%, 0 74%, 0% 75%); */
+    clip-path: polygon(0% 0%, 100% 0%, 100% 88%, 10% 88%, 0 99%, 0 74%, 0% 75%);
+}

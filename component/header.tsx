@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Header() {
     return (
-        <section className="pt-[132px] px-4 xl:px-[220px]">
+        <section className="pt-36 px-4 xl:px-[220px]">
             <div className="mx-auto container">
                 <h1 className="text-black text-center font-bold text-3xl md:text-4xl">
                     Happy Birthday Sam!

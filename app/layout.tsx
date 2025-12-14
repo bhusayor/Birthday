@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
+import { Toaster } from "sonner";
+import Navbar from "@/component/navbar";
 import { Geist, Geist_Mono } from "next/font/google";
-import SmoothScroll from "./component/smooth-scroll";
+import QueryProvider from "@/component/query-provider";
+import SmoothScroll from "../component/smooth-scroll";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -29,7 +32,12 @@ export default function RootLayout({
                 <body
                     className={`${geistSans.variable} ${geistMono.variable} antialiased`}
                 >
-                    {children}
+                    <QueryProvider>
+                        <Navbar />
+                        {children}
+                    </QueryProvider>
+
+                    <Toaster />
                 </body>
             </SmoothScroll>
         </html>
