@@ -116,6 +116,11 @@ export default function Moment() {
                         </figure>
                     ))}
                 </div>
+                <div className="flex justify-center">
+                    <button className="mt-12 bg-[#6A0DAD] text-white cursor-pointer text-base py-4 px-14 rounded-xl">
+                        View more
+                    </button>
+                </div>
             </div>
         </section>
     );
