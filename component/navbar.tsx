@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 const nav = [
     {
         id: 1,
@@ -22,17 +23,21 @@ const nav = [
 
 export default function Navbar() {
     const pathname = usePathname();
+    const [showMenu, setShowMenu] = useState<boolean>(false);
+
     return (
         <section className="pt-7 px-4 lg:px-9 fixed inset-x-0 z-40">
-            <div className="container mx-auto border border-[#E7E5E4] rounded-lg py-4 bg-[#F1F0EF00] backdrop-blur-lg px-4">
-                <nav className="flex items-center justify-between">
+            <div className="container mx-auto border border-[#E7E5E4] rounded-lg py-4 w-full backdrop-blur-lg px-4">
+                <nav className="flex w-full items-center justify-between">
                     <Link href="/" className="text-black font-normal text-xl">
                         Samuel_Omidiji
                     </Link>
-                    <div className="flex gap-5 items-center">
+                    {/* desktop navigation menu */}
+                    <div className="hidden md:flex gap-5 items-center">
                         {nav.map((item) => (
                             <Link href={item.path} key={item.id}>
                                 <h3
+                                    onClick={() => setShowMenu(false)}
                                     className={`font-normal text-sm ${
                                         pathname === item.path
                                             ? "bg-[#F1F1F1] text-[#292524] rounded-2xl px-2.5 py-1.5"
@@ -43,6 +48,51 @@ export default function Navbar() {
                                 </h3>
                             </Link>
                         ))}
+                    </div>
+                    {/* mobile navigation menu */}
+                    <div
+                        className={`${
+                            showMenu ? "flex" : "hidden"
+                        } font-outfit absolute top-16 left-0 z-60 h-fit w-full flex-col gap-5 bg-white px-2 py-14 md:top-36 lg:hidden`}
+                    >
+                        {nav.map((item) => (
+                            <Link href={item.path} key={item.id}>
+                                <h3
+                                    onClick={() => setShowMenu(false)}
+                                    className={`font-normal text-sm w-fit ${
+                                        pathname === item.path
+                                            ? "bg-[#F1F1F1] text-[#292524] rounded-2xl px-2.5 py-1.5"
+                                            : "text-[#78716C] bg-none p-0"
+                                    }`}
+                                >
+                                    {item.name}
+                                </h3>
+                            </Link>
+                        ))}
+                    </div>
+
+                    <div
+                        onClick={() => setShowMenu(!showMenu)}
+                        className="md:hidden"
+                    >
+                        <div className="relative flex h-1 w-8 flex-col items-center justify-center">
+                            <span
+                                className={`block h-1 w-6 bg-black
+                                 transition-transform ${
+                                     showMenu
+                                         ? "translate-y-0 rotate-45"
+                                         : "-translate-y-[5px]"
+                                 }`}
+                            />
+                            <span
+                                className={`block h-1 w-6 bg-black 
+                                 transition-transform ${
+                                     showMenu
+                                         ? "translate-y-0 -rotate-45"
+                                         : "translate-y-[5px]"
+                                 }`}
+                            />
+                        </div>
                     </div>
                 </nav>
             </div>
