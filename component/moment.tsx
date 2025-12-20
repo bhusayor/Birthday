@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 interface sectionProps {
     id: number;
@@ -117,9 +118,12 @@ export default function Moment() {
                     ))}
                 </div>
                 <div className="flex justify-center">
-                    <button className="mt-12 bg-[#6A0DAD] text-white cursor-pointer text-base py-4 px-14 rounded-xl">
+                    <Link
+                        href="/view-moments"
+                        className="mt-12 bg-[#6A0DAD] text-white cursor-pointer text-base py-4 px-14 rounded-xl"
+                    >
                         View more
-                    </button>
+                    </Link>
                 </div>
             </div>
         </section>
