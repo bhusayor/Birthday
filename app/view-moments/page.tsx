@@ -28,6 +28,13 @@ export default function ViewMoments() {
     return (
         <section className="pt-36 pb-10 px-4 min-h-screen flex flex-col items-center justify-center xl:px-[220px] bg-[#FCFBFA]">
             <div className="container mx-auto">
+                <h3 className="text-black text-xl text-center">
+                    This gallery captures moments, milestones, and memories that
+                    tell the story of Samuel&apos;s journey. Each photo holds a
+                    piece of laughter, growth, and experiences that have shaped
+                    who he is today. More than pictures, these are memories
+                    worth celebrating.
+                </h3>
                 <div className="flex justify-center sm:flex-row flex-wrap gap-7">
                     {isPending && (
                         <Loader
@@ -43,7 +50,7 @@ export default function ViewMoments() {
                         </span>
                     )}
                 </div>
-                <div className="grid grid-cols-1 mt-5 gap-5 md:grid-cols-3">
+                <div className="grid grid-cols-1 mt-5 md:mt-10 gap-5 md:grid-cols-3">
                     {data?.map((item) => (
                         <figure key={item.id} className="max-h-[400px]">
                             <Image

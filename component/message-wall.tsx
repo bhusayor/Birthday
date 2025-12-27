@@ -25,8 +25,6 @@ export default function MessageWall() {
         queryFn: getMessage,
     });
 
-    console.log(data);
-
     return (
         <section className="py-10 md:py-20">
             <h1 className="text-black font-medium text-3xl md:text-4xl text-center">

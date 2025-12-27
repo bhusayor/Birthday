@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Toaster } from "sonner";
 import Navbar from "@/component/navbar";
+import Footer from "@/component/footer";
 import { Geist, Geist_Mono } from "next/font/google";
 import QueryProvider from "@/component/query-provider";
 import SmoothScroll from "../component/smooth-scroll";
@@ -35,6 +36,7 @@ export default function RootLayout({
                     <QueryProvider>
                         <Navbar />
                         {children}
+                        <Footer />
                     </QueryProvider>
 
                     <Toaster />

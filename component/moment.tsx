@@ -53,8 +53,6 @@ export default function Moment() {
         queryFn: getMoment,
     });
 
-    console.log(data);
-
     return (
         <section className="pt-10 md:pt-20 px-4 xl:px-[220px]">
             <div className="container mx-auto">

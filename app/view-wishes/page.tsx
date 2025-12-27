@@ -33,7 +33,14 @@ export default function ViewWishes() {
     return (
         <section className="pt-36 pb-10 px-4 min-h-screen flex flex-col items-center justify-center xl:px-[220px] bg-[#FCFBFA]">
             <div className="container mx-auto">
-                <div className="flex flex-col justify-center sm:flex-row flex-wrap gap-7">
+                <h3 className="text-black text-xl font-normal text-center">
+                    This page is filled with heartfelt birthday wishes from
+                    friends, family, and loved ones. Each message is a
+                    reflection of the impact Samuel has made, the joy he brings
+                    to others, and the love surrounding him as he celebrates
+                    another beautiful year.
+                </h3>
+                <div className="flex flex-col mt-5 md:mt-10 justify-center sm:flex-row flex-wrap gap-7">
                     {isPending && (
                         <Loader
                             fill="#6A0DAD"
