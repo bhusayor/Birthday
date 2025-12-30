@@ -1,4 +1,4 @@
-import SendMessage from "@/component/send-message";
+import SendMessage from "@/components/send-message";
 
 export default function Wish() {
     return (

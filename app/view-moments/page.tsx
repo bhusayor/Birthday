@@ -1,9 +1,9 @@
 "use client";
 
-import Loader from "@/component/loader";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import Image from "next/image";
+import MomentIsLoading from "@/components/moment-is-loading";
 
 type moment = {
     id: number;
@@ -26,9 +26,9 @@ export default function ViewMoments() {
     });
 
     return (
-        <section className="pt-36 pb-10 px-4 min-h-screen flex flex-col items-center justify-center xl:px-[220px] bg-[#FCFBFA]">
+        <section className="pt-36 pb-10 px-4 min-h-screen flex flex-col items-center xl:px-[220px] bg-[#FCFBFA]">
             <div className="container mx-auto">
-                <h3 className="text-black text-xl text-center">
+                <h3 className="text-black text-sm sm:text-xl text-center">
                     This gallery captures moments, milestones, and memories that
                     tell the story of Samuel&apos;s journey. Each photo holds a
                     piece of laughter, growth, and experiences that have shaped
@@ -36,14 +36,7 @@ export default function ViewMoments() {
                     worth celebrating.
                 </h3>
                 <div className="flex justify-center sm:flex-row flex-wrap gap-7">
-                    {isPending && (
-                        <Loader
-                            fill="#6A0DAD"
-                            className="text-[#6A0DAD] w-10 h-10 animate-spin"
-                            role="status"
-                            aria-label="Loading"
-                        />
-                    )}
+                    {isPending && <MomentIsLoading />}
                     {isError && (
                         <span className="text-3xl text-red-500 text-center">
                             {error.message}

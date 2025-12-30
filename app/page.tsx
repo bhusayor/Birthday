@@ -1,6 +1,6 @@
-import Header from "../component/header";
-import Moment from "../component/moment";
-import MessageWall from "@/component/message-wall";
+import Header from "../components/header";
+import Moment from "../components/moment";
+import MessageWall from "@/components/message-wall";
 
 export default function Home() {
     return (
@@ -8,7 +8,6 @@ export default function Home() {
             <Header />
             <Moment />
             <MessageWall />
-            
         </main>
     );
 }

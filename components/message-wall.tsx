@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight } from "iconsax-reactjs";
 import Image from "next/image";
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
+import WishesLoading from "./wishes-loading";
 
 type wish = {
     id: number;
@@ -20,7 +21,7 @@ export default function MessageWall() {
         const wishes: wish[] = json.data;
         return wishes;
     };
-    const { data, error } = useQuery({
+    const { data, error, isError, isPending } = useQuery({
         queryKey: ["message"],
         queryFn: getMessage,
     });
@@ -68,25 +69,19 @@ export default function MessageWall() {
                         View more
                     </Link>
                 </div>
-                {/* <div className="flex justify-center w-full gap-7 overflow-x-scroll [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-                    {data?.map((wish) => (
-                        <div key={wish.id} className="w-[302px] shrink-0">
-                            <div>
-                                <h1 className="text-black">{wish.message}</h1>
-                                <div className="h-[235px] drop-shadow-2xl drop-shadow-[#0000000D] px-7 py-7 flex justify-center bg-white rounded-t-2xl rounded-br-2xl custom-clip">
-                                    <p className="text-black text-sm">
-                                        {wish.message}
-                                    </p>
-                                </div>
 
-                                <h2 className="text-black text-center">
-                                    {wish.name}
-                                </h2>
-                            </div>
-                        </div>
-                    ))}
-                </div> */}
                 <div className="w-full overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                    {isPending && (
+                        <WishesLoading
+                            className="flex gap-7 w-max px-2 sm:px-0"
+                            length={3}
+                        />
+                    )}
+                    {isError && (
+                        <h2 className="text-3xl text-red-500 text-center">
+                            {error.message}
+                        </h2>
+                    )}
                     <div className="flex gap-7 w-max px-2 sm:px-0">
                         {data?.map((wish) => (
                             <div key={wish.id} className="w-[302px] shrink-0">

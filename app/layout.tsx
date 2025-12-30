@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Toaster } from "sonner";
-import Navbar from "@/component/navbar";
-import Footer from "@/component/footer";
+import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 import { Geist, Geist_Mono } from "next/font/google";
-import QueryProvider from "@/component/query-provider";
-import SmoothScroll from "../component/smooth-scroll";
+import QueryProvider from "@/components/query-provider";
+import SmoothScroll from "../components/smooth-scroll";
 import "./globals.css";
 
 const geistSans = Geist({
