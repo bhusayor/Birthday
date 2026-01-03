@@ -1,28 +1,46 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import MomentIsLoading from "@/components/moment-is-loading";
 
-type moment = {
+type Moment = {
     id: number;
     imageUrl: string;
 };
 
-export default function ViewMoments() {
-    const [id, setId] = useState<number>(1);
-    const getMoment = async (id: number) => {
-        const response = await fetch(
-            `https://sam-s-birthdayapi-production.up.railway.app/api/v1/moment?page=${id}`
-        );
-        const json = await response.json();
-        const moments: moment[] = json.data;
-        return moments;
+type ApiResponse = {
+    data: Moment[];
+    pagination: {
+        page: number;
+        limit: number;
+        hasMore: boolean;
     };
-    const { data, error, isPending, isError } = useQuery({
-        queryKey: ["moment", id],
-        queryFn: () => getMoment(id),
+};
+
+export default function ViewMoments() {
+    const {
+        data,
+        fetchNextPage,
+        hasNextPage,
+        isFetchingNextPage,
+        isPending,
+        isError,
+        error,
+    } = useInfiniteQuery({
+        queryKey: ["moments"],
+        queryFn: ({ pageParam = 1 }): Promise<ApiResponse> =>
+            fetch(
+                `https://sam-s-birthdayapi-production.up.railway.app/api/v1/moment?page=${pageParam}&limit=9`
+            ).then((res) => res.json()),
+
+        initialPageParam: 1,
+
+        getNextPageParam: (lastPage) => {
+            return lastPage.pagination.hasMore
+                ? lastPage.pagination.page + 1
+                : undefined;
+        },
     });
 
     return (
@@ -44,30 +62,35 @@ export default function ViewMoments() {
                     )}
                 </div>
                 <div className="grid grid-cols-1 mt-5 md:mt-10 gap-5 md:grid-cols-3">
-                    {data?.map((item) => (
-                        <figure key={item.id} className="max-h-[400px]">
-                            <Image
-                                className="w-full h-full object-cover object-top"
-                                src={item.imageUrl}
-                                width={320}
-                                height={360}
-                                alt="sam's Image"
-                            />
-                        </figure>
-                    ))}
+                    {data?.pages.flatMap((page) =>
+                        page.data.map((item) => (
+                            <figure key={item.id} className="max-h-[400px]">
+                                <Image
+                                    className="w-full h-full object-cover"
+                                    src={item.imageUrl}
+                                    width={320}
+                                    height={360}
+                                    alt="Moment"
+                                />
+                            </figure>
+                        ))
+                    )}
                 </div>
-                <section
-                    className={`${
-                        isPending ? "hidden" : "flex"
-                    }  items-center justify-center`}
-                >
-                    <div
-                        onClick={() => setId((prev) => prev + 1)}
-                        className="text-white font-medium text-center cursor-pointer rounded-xl py-3 mt-9 w-fit px-10 bg-[#6A0DAD] text-base"
+                {hasNextPage && (
+                    <section
+                        className={`${
+                            isPending ? "hidden" : "flex"
+                        }  items-center justify-center`}
                     >
-                        View more
-                    </div>
-                </section>
+                        <button
+                            onClick={() => fetchNextPage()}
+                            disabled={isFetchingNextPage}
+                            className="text-white font-medium text-center cursor-pointer rounded-xl py-3 mt-9 w-fit px-10 bg-[#6A0DAD] text-base"
+                        >
+                            {isFetchingNextPage ? "loading..." : "View more"}
+                        </button>
+                    </section>
+                )}
             </div>
         </section>
     );

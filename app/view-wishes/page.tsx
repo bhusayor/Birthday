@@ -1,28 +1,46 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import WishesLoading from "@/components/wishes-loading";
 
-type wish = {
+type Wish = {
     id: number;
     name: string;
     message: string;
 };
 
-export default function ViewWishes() {
-    const [id, setId] = useState<number>(1);
-    const getMessage = async (id: number) => {
-        const response = await fetch(
-            `https://sam-s-birthdayapi-production.up.railway.app/api/v1/birthday-wish?page=${id}`
-        );
-        const json = await response.json();
-        const wishes: wish[] = json.data;
-        return wishes;
+type ApiResponse = {
+    data: Wish[];
+    pagination: {
+        page: number;
+        limit: number;
+        hasMore: boolean;
     };
-    const { data, error, isPending, isError } = useQuery({
-        queryKey: ["message", id],
-        queryFn: () => getMessage(id),
+};
+
+export default function ViewWishes() {
+    const {
+        data,
+        fetchNextPage,
+        hasNextPage,
+        isFetchingNextPage,
+        isPending,
+        isError,
+        error,
+    } = useInfiniteQuery({
+        queryKey: ["wish"],
+        queryFn: ({ pageParam = 1 }): Promise<ApiResponse> =>
+            fetch(
+                `https://sam-s-birthdayapi-production.up.railway.app/api/v1/birthday-wish?page=${pageParam}&limit=9`
+            ).then((res) => res.json()),
+
+        initialPageParam: 1,
+
+        getNextPageParam: (lastPage) => {
+            return lastPage.pagination.hasMore
+                ? lastPage.pagination.page + 1
+                : undefined;
+        },
     });
 
     return (
@@ -42,34 +60,40 @@ export default function ViewWishes() {
                             {error.message}
                         </span>
                     )}
-                    {data?.map((wish) => (
-                        <div key={wish.id} className="w-full sm:w-[302px]">
-                            <div>
-                                <div className="h-[235px] drop-shadow-2xl drop-shadow-[#0000000D] px-7 py-7 flex justify-center bg-white rounded-t-2xl rounded-br-2xl custom-clip">
-                                    <p className="text-black text-sm">
-                                        {wish.message}
-                                    </p>
-                                </div>
+                    {data?.pages.flatMap((page) =>
+                        page.data.map((wish) => (
+                            <div key={wish.id} className="w-full sm:w-[302px]">
+                                <div>
+                                    <div className="h-[235px] drop-shadow-2xl drop-shadow-[#0000000D] px-7 py-7 flex justify-center bg-white rounded-t-2xl rounded-br-2xl custom-clip">
+                                        <p className="text-black text-sm">
+                                            {wish.message}
+                                        </p>
+                                    </div>
 
-                                <h2 className="text-black text-center">
-                                    {wish.name}
-                                </h2>
+                                    <h2 className="text-black text-center">
+                                        {wish.name}
+                                    </h2>
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        ))
+                    )}
                 </div>
-                <section
-                    className={`${
-                        isPending ? "hidden" : "flex"
-                    }  items-center justify-center`}
-                >
-                    <div
-                        onClick={() => setId((prev) => prev + 1)}
-                        className="text-white font-medium text-center cursor-pointer rounded-xl py-3 mt-9 w-fit px-10 bg-[#6A0DAD] text-base"
+
+                {hasNextPage && (
+                    <section
+                        className={`${
+                            isPending ? "hidden" : "flex"
+                        }  items-center justify-center`}
                     >
-                        View more
-                    </div>
-                </section>
+                        <button
+                            onClick={() => fetchNextPage()}
+                            disabled={isFetchingNextPage}
+                            className="text-white font-medium text-center cursor-pointer rounded-xl py-3 mt-9 w-fit px-10 bg-[#6A0DAD] text-base"
+                        >
+                            {isFetchingNextPage ? "loading..." : "View more"}
+                        </button>
+                    </section>
+                )}
             </div>
         </section>
     );
