@@ -2,6 +2,7 @@
 
 import { ArrowLeft, ArrowRight } from "iconsax-reactjs";
 import Image from "next/image";
+import { useRef, useEffect, useState } from "react";
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import WishesLoading from "./wishes-loading";
@@ -13,6 +14,11 @@ type wish = {
 };
 
 export default function MessageWall() {
+    const scrollRef = useRef<HTMLDivElement | null>(null);
+    const [progress, setProgress] = useState(0);
+    const [atStart, setAtStart] = useState(true);
+    const [atEnd, setAtEnd] = useState(false);
+
     const getMessage = async () => {
         const response = await fetch(
             `https://sam-s-birthdayapi-production.up.railway.app/api/v1/birthday-wish/recent`
@@ -25,6 +31,43 @@ export default function MessageWall() {
         queryKey: ["message"],
         queryFn: getMessage,
     });
+
+    useEffect(() => {
+        const el = scrollRef.current;
+        if (!el) return;
+
+        const handleScroll = () => {
+            const { scrollLeft, scrollWidth, clientWidth } = el;
+
+            const maxScroll = scrollWidth - clientWidth;
+            const percent = maxScroll > 0 ? scrollLeft / maxScroll : 0;
+
+            setProgress(percent);
+            setAtStart(scrollLeft <= 0);
+            setAtEnd(scrollLeft >= maxScroll - 1);
+        };
+
+        handleScroll();
+        el.addEventListener("scroll", handleScroll);
+
+        return () => el.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    const CARD_WIDTH = 302 + 28;
+
+    const moveToEnd = () => {
+        scrollRef.current?.scrollBy({
+            left: CARD_WIDTH,
+            behavior: "smooth",
+        });
+    };
+
+    const moveToStart = () => {
+        scrollRef.current?.scrollBy({
+            left: -CARD_WIDTH,
+            behavior: "smooth",
+        });
+    };
 
     return (
         <section className="py-10 md:py-20">
@@ -50,16 +93,29 @@ export default function MessageWall() {
                     <h1 className="text-black font-medium mt-9 text-3xl">
                         Birthday Message for Samuel
                     </h1>
-                    <div className="mt-10 flex items-center justify-between">
+                    <div className="mt-10 flex items-center gap-4">
                         <ArrowLeft
+                            onClick={atStart ? undefined : moveToStart}
                             size="32"
-                            color="#0000004D"
-                            className="cursor-pointer"
+                            color={atStart ? "#0000004D" : "#000000"}
+                            className={`cursor-pointer transition ${
+                                atStart ? "opacity-40 cursor-not-allowed" : ""
+                            }`}
                         />
+                        <div className="relative h-0.5 w-full bg-[#00000033] overflow-hidden">
+                            <div
+                                className="absolute left-0 top-0 h-full bg-black transition-all duration-200"
+                                style={{ width: `${progress * 100}%` }}
+                            />
+                        </div>
+
                         <ArrowRight
+                            onClick={atEnd ? undefined : moveToEnd}
                             size="32"
-                            color="#000000"
-                            className="cursor-pointer"
+                            color={atEnd ? "#0000004D" : "#000000"}
+                            className={`cursor-pointer transition ${
+                                atEnd ? "opacity-40 cursor-not-allowed" : ""
+                            }`}
                         />
                     </div>
                     <Link
@@ -70,7 +126,10 @@ export default function MessageWall() {
                     </Link>
                 </div>
 
-                <div className="w-full overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                <div
+                    ref={scrollRef}
+                    className="w-full overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+                >
                     {isPending && (
                         <WishesLoading
                             className="flex gap-7 w-max px-2 sm:px-0"
