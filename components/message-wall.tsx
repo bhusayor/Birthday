@@ -90,7 +90,7 @@ export default function MessageWall() {
                             height={68}
                         />
                     </div>
-                    <h1 className="text-black font-medium mt-9 text-3xl">
+                    <h1 className="text-black font-medium font-outfit mt-9 text-3xl">
                         Birthday Message for Samuel
                     </h1>
                     <div className="mt-10 flex items-center gap-4">
@@ -145,12 +145,12 @@ export default function MessageWall() {
                         {data?.map((wish) => (
                             <div key={wish.id} className="w-[302px] shrink-0">
                                 <div className="h-[235px] drop-shadow-2xl px-7 py-7 bg-white rounded-t-2xl rounded-br-2xl custom-clip">
-                                    <p className="text-black text-sm">
+                                    <p className="text-black font-nunito text-sm">
                                         {wish.message}
                                     </p>
                                 </div>
 
-                                <h2 className="text-black text-center mt-2">
+                                <h2 className="text-black font-nunito text-center mt-2">
                                     {wish.name}
                                 </h2>
                             </div>

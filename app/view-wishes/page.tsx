@@ -65,12 +65,12 @@ export default function ViewWishes() {
                             <div key={wish.id} className="w-full sm:w-[302px]">
                                 <div>
                                     <div className="h-[235px] drop-shadow-2xl drop-shadow-[#0000000D] px-7 py-7 flex justify-center bg-white rounded-t-2xl rounded-br-2xl custom-clip">
-                                        <p className="text-black text-sm">
+                                        <p className="text-black font-nunito text-sm">
                                             {wish.message}
                                         </p>
                                     </div>
 
-                                    <h2 className="text-black text-center">
+                                    <h2 className="text-black font-nunito text-center">
                                         {wish.name}
                                     </h2>
                                 </div>

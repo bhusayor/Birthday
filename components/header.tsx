@@ -11,13 +11,15 @@ export default function Header() {
                     Celebrating a life of joy and achievements.
                 </p>
                 <figure className="pt-7 xl:pt-14">
-                    <Image
-                        className="w-full h-full"
-                        src="/images/heroImage.webp"
-                        width={498}
-                        height={510}
-                        alt="sam's video"
-                    />
+                    <video controls autoPlay muted loop preload="none">
+                        <source src="/Sam omidiji.mp4" type="video/mp4" />
+                        <track
+                            src="/path/to/captions.vtt"
+                            kind="subtitles"
+                            srcLang="en"
+                            label="English"
+                        />
+                    </video>
                 </figure>
                 <section className="pt-14 gap-8 grid grid-cols-1 md:grid-cols-2 items-center justify-center lg:gap-16">
                     <div>
