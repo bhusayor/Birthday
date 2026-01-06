@@ -2,9 +2,13 @@ import { cn } from "@/utils/util";
 
 type MomentIsLoadingProps = {
     className?: string;
+    length?: number;
 };
 
-export default function MomentIsLoading({ className }: MomentIsLoadingProps) {
+export default function MomentIsLoading({
+    className,
+    length = 12,
+}: MomentIsLoadingProps) {
     return (
         <div
             className={cn(
@@ -12,7 +16,7 @@ export default function MomentIsLoading({ className }: MomentIsLoadingProps) {
                 className
             )}
         >
-            {Array.from({ length: 12 }).map((_, index) => (
+            {Array.from({ length }).map((_, index) => (
                 <div
                     key={index}
                     className="h-[400px] w-full sm:w-[340px] rounded-lg bg-white shadow-sm"

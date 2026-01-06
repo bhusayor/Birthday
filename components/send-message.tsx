@@ -114,7 +114,7 @@ export default function SendMessage() {
                         <button
                             aria-label="submit"
                             disabled={isPending}
-                            className="bg-[#6A0DAD] mt-5 py-2 cursor-pointer rounded-lg flex items-center justify-center w-full gap-2"
+                            className="bg-[#6A0DAD] mt-5 py-2 active:scale-95 transition-transform duration-150 cursor-pointer rounded-lg flex items-center justify-center w-full gap-2"
                         >
                             <span className="text-sm font-normal">
                                 {isPending ? "Sending..." : "Send Message"}

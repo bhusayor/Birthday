@@ -3,43 +3,33 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
+import MomentIsLoading from "./moment-is-loading";
+import ScrollTrigger from "gsap/dist/ScrollTrigger";
+import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
-interface sectionProps {
-    id: number;
-    img: string;
-}
+gsap.registerPlugin(ScrollTrigger);
 interface moment {
     id: number;
     imageUrl: string;
 }
-const thirdSection: sectionProps[] = [
-    {
-        id: 1,
-        img: "/images/IMG3-1.webp",
-    },
-    {
-        id: 2,
-        img: "/images/IMG3-2.webp",
-    },
-    {
-        id: 3,
-        img: "/images/IMG3-3.webp",
-    },
-    {
-        id: 4,
-        img: "/images/IMG3-4.webp",
-    },
-    {
-        id: 5,
-        img: "/images/IMG3-5.webp",
-    },
-    {
-        id: 6,
-        img: "/images/IMG3-6.webp",
-    },
-];
 
 export default function Moment() {
+    const title = useRef(null);
+    useGSAP(() => {
+        gsap.from(title.current, {
+            scrollTrigger: {
+                trigger: title.current,
+                start: "top 80%",
+                toggleActions: "play none none none",
+            },
+            y: 20,
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.out",
+        });
+    });
     const getMoment = async () => {
         const response = await fetch(
             `https://sam-s-birthdayapi-production.up.railway.app/api/v1/moment/recent`
@@ -56,7 +46,10 @@ export default function Moment() {
     return (
         <section className="pt-10 md:pt-20 px-4 xl:px-[220px]">
             <div className="container mx-auto">
-                <h1 className="text-center text-black text-3xl md:text-4xl font-bold">
+                <h1
+                    ref={title}
+                    className="text-center text-black text-3xl md:text-4xl font-bold"
+                >
                     Moments With Samuel 📸
                 </h1>
                 <div className="pt-7 md:pt-14">
@@ -128,6 +121,7 @@ export default function Moment() {
                         Internal server error
                     </p>
                 )}
+                {isPending && <MomentIsLoading length={6} />}
                 {isSuccess && (
                     <div className="grid grid-cols-1 mt-5 gap-5 md:grid-cols-3">
                         {data?.map((item) => (
@@ -146,7 +140,7 @@ export default function Moment() {
                 <div className="flex justify-center">
                     <Link
                         href="/view-moments"
-                        className="mt-12 bg-[#6A0DAD] text-white cursor-pointer text-base py-4 px-14 rounded-xl"
+                        className="mt-12 bg-[#6A0DAD] text-white active:scale-95 transition-transform duration-150 cursor-pointer text-base py-4 px-14 rounded-xl"
                     >
                         View more
                     </Link>

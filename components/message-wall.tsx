@@ -6,6 +6,11 @@ import { useRef, useEffect, useState } from "react";
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import WishesLoading from "./wishes-loading";
+import ScrollTrigger from "gsap/dist/ScrollTrigger";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 type wish = {
     id: number;
@@ -15,9 +20,21 @@ type wish = {
 
 export default function MessageWall() {
     const scrollRef = useRef<HTMLDivElement | null>(null);
+    const title = useRef(null);
+    useGSAP(() => {
+        gsap.from(title.current, {
+            scrollTrigger: {
+                trigger: title.current,
+                start: "top 80%",
+                toggleActions: "play none none none",
+            },
+            y: 20,
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.out",
+        });
+    });
     const [progress, setProgress] = useState(0);
-    const [atStart, setAtStart] = useState(true);
-    const [atEnd, setAtEnd] = useState(false);
 
     const getMessage = async () => {
         const response = await fetch(
@@ -43,8 +60,6 @@ export default function MessageWall() {
             const percent = maxScroll > 0 ? scrollLeft / maxScroll : 0;
 
             setProgress(percent);
-            setAtStart(scrollLeft <= 0);
-            setAtEnd(scrollLeft >= maxScroll - 1);
         };
 
         handleScroll();
@@ -71,7 +86,10 @@ export default function MessageWall() {
 
     return (
         <section className="py-10 md:py-20">
-            <h1 className="text-black font-medium text-3xl md:text-4xl text-center">
+            <h1
+                ref={title}
+                className="text-black font-medium text-3xl md:text-4xl text-center"
+            >
                 Message wall
             </h1>
             <div className="mt-10 flex flex-col gap-10 sm:flex-row items-center lg:gap-20 pl-4 xl:pl-[220px]">
@@ -95,32 +113,28 @@ export default function MessageWall() {
                     </h1>
                     <div className="mt-10 flex items-center gap-4">
                         <ArrowLeft
-                            onClick={atStart ? undefined : moveToStart}
+                            onClick={moveToStart}
                             size="32"
-                            color={atStart ? "#0000004D" : "#000000"}
-                            className={`cursor-pointer transition ${
-                                atStart ? "opacity-40 cursor-not-allowed" : ""
-                            }`}
+                            color={"#000000"}
+                            className="cursor-pointer w-fit transition-transform duration-150 active:scale-75"
                         />
+
                         <div className="relative h-0.5 w-full bg-[#00000033] overflow-hidden">
                             <div
                                 className="absolute left-0 top-0 h-full bg-black transition-all duration-200"
                                 style={{ width: `${progress * 100}%` }}
                             />
                         </div>
-
                         <ArrowRight
-                            onClick={atEnd ? undefined : moveToEnd}
+                            onClick={moveToEnd}
                             size="32"
-                            color={atEnd ? "#0000004D" : "#000000"}
-                            className={`cursor-pointer transition ${
-                                atEnd ? "opacity-40 cursor-not-allowed" : ""
-                            }`}
+                            color="#000000"
+                            className="cursor-pointer w-fit transition-transform duration-150 active:scale-75"
                         />
                     </div>
                     <Link
                         href="/view-wishes"
-                        className="text-white font-medium block text-center rounded-xl py-3 mt-9 w-full bg-[#6A0DAD] text-base"
+                        className="text-white active:scale-95 transition-transform duration-150 font-medium block text-center rounded-xl py-3 mt-9 w-full bg-[#6A0DAD] text-base"
                     >
                         View more
                     </Link>

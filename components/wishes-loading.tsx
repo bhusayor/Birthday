@@ -19,7 +19,7 @@ export default function WishesLoading({
             {Array.from({ length }).map((_, index) => (
                 <div
                     key={index}
-                    className="h-[235px] w-full sm:w-[302px] drop-shadow-2xl drop-shadow-[#0000000D] bg-white rounded-t-2xl rounded-br-2xl custom-clip"
+                    className="h-[235px] w-full sm:w-[330px] drop-shadow-2xl drop-shadow-[#0000000D] bg-white rounded-t-2xl rounded-br-2xl custom-clip"
                 ></div>
             ))}
         </div>
