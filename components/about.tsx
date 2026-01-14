@@ -48,7 +48,7 @@ export default function About() {
     return (
         <section className="pt-14 px-4 xl:px-[220px]">
             <div className="mx-auto container">
-                <section className="pt-14 gap-8 grid grid-cols-1 md:grid-cols-2 items-center justify-center lg:gap-16">
+                <section className="gap-8 grid grid-cols-1 md:grid-cols-2 items-center justify-center lg:gap-16">
                     <div ref={box}>
                         <h1
                             ref={title}

@@ -85,7 +85,7 @@ export default function MessageWall() {
     };
 
     return (
-        <section className="py-10 md:py-20">
+        <section id="wish" className="py-10 md:py-20">
             <h1
                 ref={title}
                 className="text-black font-medium text-3xl md:text-4xl text-center"

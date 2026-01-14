@@ -28,12 +28,19 @@ export default function Header() {
                 </h1>
                 <p
                     ref={subtitle}
-                    className="text-[#999999] text-center pt-4 text-3xl"
+                    className="text-[#999999] text-xl text-center pt-4 sm:text-3xl"
                 >
                     Celebrating a life of joy and achievements.
                 </p>
                 <figure className="pt-7 xl:pt-14">
-                    <video autoPlay muted loop preload="none">
+                    <video
+                        autoPlay
+                        controls
+                        muted
+                        className="h-[400px] object-cover sm:h-full w-full"
+                        loop
+                        preload="none"
+                    >
                         <source src="/Sam omidiji.mp4" type="video/mp4" />
                         <track
                             src="/path/to/captions.vtt"

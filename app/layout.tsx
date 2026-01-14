@@ -33,7 +33,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
+        <html lang="en" className="scroll-smooth">
             <SmoothScroll>
                 <body
                     className={`${urbanist.variable} ${nunito.variable} ${outfit.variable} antialiased`}

@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useState } from "react";
 const nav = [
     {
@@ -12,22 +11,21 @@ const nav = [
     {
         id: 2,
         name: "Gallery",
-        path: "/gallery",
+        path: "#gallery",
     },
     {
         id: 3,
         name: "Wishes",
-        path: "/wish",
+        path: "#wish",
     },
 ];
 
 export default function Navbar() {
-    const pathname = usePathname();
     const [showMenu, setShowMenu] = useState<boolean>(false);
 
     return (
-        <section className="pt-7 px-4 lg:px-9 fixed inset-x-0 z-40">
-            <div className="container mx-auto border border-[#E7E5E4] rounded-lg py-4 w-full backdrop-blur-lg px-4">
+        <section className="pt-3 px-4 lg:px-9 fixed inset-x-0 z-40">
+            <div className="border border-[#E7E5E4] rounded-lg py-4 w-full backdrop-blur-lg px-4">
                 <nav className="flex w-full items-center justify-between">
                     <Link href="/" className="text-black font-normal text-xl">
                         Samuel_Omidiji
@@ -38,11 +36,7 @@ export default function Navbar() {
                             <Link href={item.path} key={item.id}>
                                 <h3
                                     onClick={() => setShowMenu(false)}
-                                    className={`font-normal text-sm ${
-                                        pathname === item.path
-                                            ? "bg-[#F1F1F1] text-[#292524] rounded-2xl px-2.5 py-1.5"
-                                            : "text-[#78716C] bg-none p-0"
-                                    }`}
+                                    className="font-normal text-sm text-[#292524]"
                                 >
                                     {item.name}
                                 </h3>
@@ -59,11 +53,7 @@ export default function Navbar() {
                             <Link href={item.path} key={item.id}>
                                 <h3
                                     onClick={() => setShowMenu(false)}
-                                    className={`font-normal text-sm w-fit ${
-                                        pathname === item.path
-                                            ? "bg-[#F1F1F1] text-[#292524] rounded-2xl px-2.5 py-1.5"
-                                            : "text-[#78716C] bg-none p-0"
-                                    }`}
+                                    className="font-normal text-sm  text-[#292524]"
                                 >
                                     {item.name}
                                 </h3>
