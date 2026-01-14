@@ -44,7 +44,7 @@ export default function Moment() {
     });
 
     return (
-        <section className="pt-10 md:pt-20 px-4 xl:px-[220px]">
+        <section id="gallery" className="pt-10 md:pt-20 px-4 xl:px-[220px]">
             <div className="container mx-auto">
                 <h1
                     ref={title}
