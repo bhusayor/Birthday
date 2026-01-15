@@ -1,0 +1,12 @@
+{
+  "pages": {},
+  "app": {
+    "[project]/app/send-wish/page": [
+      "static/media/5c8bbc89ca099f34-s.p.871a2d56.woff2",
+      "static/media/1b99372b3eaef0c8-s.p.758e15a8.woff2",
+      "static/media/07454f8ad8aaac57-s.p.fc65572f.woff2"
+    ]
+  },
+  "appUsingSizeAdjust": true,
+  "pagesUsingSizeAdjust": false
+}
