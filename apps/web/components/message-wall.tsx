@@ -38,7 +38,7 @@ export default function MessageWall() {
 
     const getMessage = async () => {
         const response = await fetch(
-            `https://sam-s-birthdayapi-production.up.railway.app/api/v1/birthday-wish/recent`
+            `https://birthday-api-production-88e6.up.railway.app/api/v1/birthday-wish/recent`
         );
         const json = await response.json();
         const wishes: wish[] = json.data;
@@ -92,8 +92,8 @@ export default function MessageWall() {
             >
                 Message wall
             </h1>
-            <div className="mt-10 flex flex-col gap-10 sm:flex-row items-center lg:gap-20 pl-4 xl:pl-[220px]">
-                <div className="max-w-[235px] w-full">
+            <div className="mt-10 flex flex-col gap-10 sm:flex-row items-center lg:gap-20 pl-4 xl:pl-55">
+                <div className="max-w-58.75 w-full">
                     <div className="flex items-center gap-2.5">
                         <Image
                             src="/svgs/apostrophe.svg"
@@ -157,8 +157,8 @@ export default function MessageWall() {
                     )}
                     <div className="flex gap-7 w-max px-2 sm:px-0">
                         {data?.map((wish) => (
-                            <div key={wish.id} className="w-[302px] shrink-0">
-                                <div className="h-[235px] drop-shadow-2xl px-7 py-7 bg-white rounded-t-2xl rounded-br-2xl custom-clip">
+                            <div key={wish.id} className="w-75.5 shrink-0">
+                                <div className="h-58.75 drop-shadow-2xl px-7 py-7 bg-white rounded-t-2xl rounded-br-2xl custom-clip">
                                     <p className="text-black font-nunito text-sm">
                                         {wish.message}
                                     </p>

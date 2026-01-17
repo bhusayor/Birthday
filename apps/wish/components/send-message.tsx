@@ -13,7 +13,7 @@ export default function SendMessage() {
     });
     const submitWish = async (form: { name: string; message: string }) => {
         const response = await fetch(
-            "https://sam-s-birthdayapi-production.up.railway.app/api/v1/birthday-wish",
+            "https://birthday-api-production-88e6.up.railway.app/api/v1/birthday-wish",
             {
                 method: "POST",
                 headers: {
