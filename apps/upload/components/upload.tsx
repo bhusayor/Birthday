@@ -12,10 +12,9 @@ export default function Upload() {
         const formData = new FormData();
         formData.append("imageUrl", file);
         const response = await fetch(
-            "https://sam-s-birthdayapi-production.up.railway.app/api/v1/moment",
+            "https://birthday-api-production-88e6.up.railway.app/api/v1/moment",
             {
                 method: "POST",
-
                 body: formData,
             }
         );
