@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+:root {
+    --background: #ffffff;
+    --foreground: #171717;
+}
+
+@theme {
+    --breakpoint-xl: 1440px;
+}
+
+@theme inline {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --font-urbanist: var(--font-urbanist);
+    --font-outfit: var(--font-outfit);
+    --font-nunito: var(--font-nunito);
+}
+
+body {
+    background: var(--background);
+    color: var(--background);
+    font-family: var(--font-urbanist);
+}
+
+.custom-clip {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 88%, 10% 88%, 0 99%, 0 74%, 0% 75%);
+}
