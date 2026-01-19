@@ -38,7 +38,7 @@ export default function MessageWall() {
 
     const getMessage = async () => {
         const response = await fetch(
-            `https://birthday-api-production-88e6.up.railway.app/api/v1/birthday-wish/recent`
+            `https://birthday-api-production-88e6.up.railway.app/api/v1/birthday-wish/recent`,
         );
         const json = await response.json();
         const wishes: wish[] = json.data;
@@ -98,20 +98,20 @@ export default function MessageWall() {
                         <Image
                             src="/svgs/apostrophe.svg"
                             alt="illustration"
-                            width={34}
-                            height={68}
+                            width={20}
+                            height={50}
                         />
                         <Image
                             src="/svgs/apostrophe.svg"
                             alt="illustration"
-                            width={34}
-                            height={68}
+                            width={20}
+                            height={50}
                         />
                     </div>
-                    <h1 className="text-black font-medium font-outfit mt-9 text-3xl">
+                    <h1 className="text-black font-medium font-outfit mt-6 text-3xl">
                         Birthday Message for Samuel
                     </h1>
-                    <div className="mt-10 flex items-center gap-4">
+                    <div className="mt-8 flex items-center gap-4">
                         <ArrowLeft
                             onClick={moveToStart}
                             size="32"
@@ -134,7 +134,7 @@ export default function MessageWall() {
                     </div>
                     <Link
                         href="/view-wishes"
-                        className="text-white active:scale-95 transition-transform duration-150 font-medium block text-center rounded-xl py-3 mt-9 w-full bg-[#6A0DAD] text-base"
+                        className="text-white active:scale-95 transition-transform duration-150 font-medium block text-center rounded-xl py-3 mt-6 w-full bg-[#6A0DAD] text-base"
                     >
                         View more
                     </Link>
@@ -155,10 +155,13 @@ export default function MessageWall() {
                             {error.message}
                         </h2>
                     )}
-                    <div className="flex gap-7 w-max px-2 sm:px-0">
+                    <div
+                        data-lenis-prevent
+                        className="flex gap-7 w-max px-2 sm:px-0"
+                    >
                         {data?.map((wish) => (
                             <div key={wish.id} className="w-75.5 shrink-0">
-                                <div className="h-58.75 drop-shadow-2xl px-7 py-7 bg-white rounded-t-2xl rounded-br-2xl custom-clip">
+                                <div className="h-72 overflow-y-scroll drop-shadow-2xl px-7 pt-7 pb-14  bg-white rounded-t-2xl rounded-br-2xl custom-clip">
                                     <p className="text-black font-nunito text-sm">
                                         {wish.message}
                                     </p>

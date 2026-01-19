@@ -32,7 +32,7 @@ export default function Moment() {
     });
     const getMoment = async () => {
         const response = await fetch(
-            `https://birthday-api-production-88e6.up.railway.app/api/v1/moment/recent`
+            `https://birthday-api-production-88e6.up.railway.app/api/v1/moment/recent`,
         );
         const json = await response.json();
         const moment: moment[] = json.data;
@@ -85,24 +85,24 @@ export default function Moment() {
                             />
                         </div>
 
-                            <div className="w-full h-108">
-                                <Image
-                                    className="w-full h-full object-cover object-top"
-                                    src="/images/IMG1-2.webp"
-                                    width={600}
-                                    height={500}
-                                    alt="sam's Image"
-                                />
-                            </div>
-                            <div className="w-full h-108">
-                                <Image
-                                    className="w-full h-full object-cover object-center"
-                                    src="/images/IMG1-3.webp"
-                                    width={600}
-                                    height={500}
-                                    alt="sam's Image"
-                                />
-                            </div>
+                        <div className="w-full h-108">
+                            <Image
+                                className="w-full h-full object-cover object-top"
+                                src="/images/IMG1-2.webp"
+                                width={600}
+                                height={500}
+                                alt="sam's Image"
+                            />
+                        </div>
+                        <div className="w-full h-108">
+                            <Image
+                                className="w-full h-full object-cover object-center"
+                                src="/images/IMG1-3.webp"
+                                width={600}
+                                height={500}
+                                alt="sam's Image"
+                            />
+                        </div>
                         <div className="w-full h-108">
                             <Image
                                 className="w-full h-full object-cover object-center"
@@ -132,15 +132,12 @@ export default function Moment() {
                         </div>
                     </div>
                 </div>
-               
-                <div className="flex justify-center">
-                    <Link
-                        href="/view-moments"
-                        className="mt-12 bg-[#6A0DAD] text-white active:scale-95 transition-transform duration-150 cursor-pointer text-base py-4 px-14 rounded-xl"
-                    >
-                        View more
-                    </Link>
-                </div>
+                <Link
+                    href="/view-moments"
+                    className="text-white active:scale-95 w-58.75 transition-transform duration-150 font-medium block text-center rounded-xl py-3 mt-12 mx-auto bg-[#6A0DAD] text-base"
+                >
+                    View more
+                </Link>
             </div>
         </section>
     );

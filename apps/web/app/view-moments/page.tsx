@@ -43,7 +43,7 @@ export default function ViewMoments() {
         queryKey: ["moments"],
         queryFn: ({ pageParam = 1 }): Promise<ApiResponse> =>
             fetch(
-                `https://sam-s-birthdayapi-production.up.railway.app/api/v1/moment?page=${pageParam}&limit=9`
+                `https://birthday-api-production-88e6.up.railway.app/api/v1/moment?page=${pageParam}&limit=9`,
             ).then((res) => res.json()),
 
         initialPageParam: 1,
@@ -88,7 +88,7 @@ export default function ViewMoments() {
                                     alt="Moment"
                                 />
                             </figure>
-                        ))
+                        )),
                     )}
                 </div>
                 {hasNextPage && (

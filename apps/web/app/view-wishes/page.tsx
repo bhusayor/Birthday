@@ -44,7 +44,7 @@ export default function ViewWishes() {
         queryKey: ["wish"],
         queryFn: ({ pageParam = 1 }): Promise<ApiResponse> =>
             fetch(
-                `https://sam-s-birthdayapi-production.up.railway.app/api/v1/birthday-wish?page=${pageParam}&limit=9`
+                `https://birthday-api-production-88e6.up.railway.app/api/v1/birthday-wish?page=${pageParam}&limit=9`,
             ).then((res) => res.json()),
 
         initialPageParam: 1,
@@ -78,9 +78,13 @@ export default function ViewWishes() {
                     )}
                     {data?.pages.flatMap((page) =>
                         page.data.map((wish) => (
-                            <div key={wish.id} className="w-full sm:w-82.5">
+                            <div
+                                data-lenis-prevent
+                                key={wish.id}
+                                className="w-full sm:w-82.5"
+                            >
                                 <div>
-                                    <div className="h-58.75 drop-shadow-2xl drop-shadow-[#0000000D] px-7 py-7 flex justify-center bg-white rounded-t-2xl rounded-br-2xl custom-clip">
+                                    <div className="h-72 overflow-y-scroll drop-shadow-2xl px-7 pt-7 pb-16 bg-white rounded-t-2xl rounded-br-2xl custom-clip">
                                         <p className="text-black font-nunito text-sm">
                                             {wish.message}
                                         </p>
@@ -91,7 +95,7 @@ export default function ViewWishes() {
                                     </h2>
                                 </div>
                             </div>
-                        ))
+                        )),
                     )}
                 </div>
 
