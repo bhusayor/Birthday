@@ -85,7 +85,7 @@ export default function SendMessage() {
                                         name: e.target.value,
                                     }));
                                 }}
-                                placeholder="ogunmekpon"
+                                placeholder="Your name"
                             />
                         </div>
                         <div className="flex flex-col gap-1.5 mt-6">
