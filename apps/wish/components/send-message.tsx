@@ -20,7 +20,7 @@ export default function SendMessage() {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(form),
-            }
+            },
         );
 
         if (!response.ok) {

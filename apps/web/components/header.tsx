@@ -18,7 +18,7 @@ export default function Header() {
     });
 
     return (
-        <section className="pt-36 px-4 xl:px-[220px]">
+        <section className="pt-36 px-4 xl:px-55">
             <div className="mx-auto container">
                 <h1
                     ref={title}
@@ -37,7 +37,7 @@ export default function Header() {
                         autoPlay
                         controls
                         muted
-                        className="h-[400px] object-cover sm:h-full w-full"
+                        className="h-100 object-cover sm:h-full w-full"
                         loop
                         preload="none"
                     >

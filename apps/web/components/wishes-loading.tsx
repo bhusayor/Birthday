@@ -13,13 +13,13 @@ export default function WishesLoading({
         <div
             className={cn(
                 "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 animate-pulse gap-4",
-                className
+                className,
             )}
         >
             {Array.from({ length }).map((_, index) => (
                 <div
                     key={index}
-                    className="h-[235px] w-full sm:w-[330px] drop-shadow-2xl drop-shadow-[#0000000D] bg-white rounded-t-2xl rounded-br-2xl custom-clip"
+                    className="h-58.75 w-full sm:w-82.5 drop-shadow-2xl drop-shadow-[#0000000D] bg-white rounded-t-2xl rounded-br-2xl custom-clip"
                 ></div>
             ))}
         </div>
