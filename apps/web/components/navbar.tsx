@@ -71,7 +71,7 @@ export default function Navbar() {
                                  transition-transform ${
                                      showMenu
                                          ? "translate-y-0 rotate-45"
-                                         : "-translate-y-[5px]"
+                                         : "-translate-y-1.25"
                                  }`}
                             />
                             <span
@@ -79,7 +79,7 @@ export default function Navbar() {
                                  transition-transform ${
                                      showMenu
                                          ? "translate-y-0 -rotate-45"
-                                         : "translate-y-[5px]"
+                                         : "translate-y-1.25"
                                  }`}
                             />
                         </div>

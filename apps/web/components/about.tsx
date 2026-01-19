@@ -39,14 +39,14 @@ export default function About() {
                     ease: "power2.out",
                     stagger: 0.2,
                 },
-                "-=0.3"
+                "-=0.3",
             );
         },
-        { scope: box }
+        { scope: box },
     );
 
     return (
-        <section className="pt-14 px-4 xl:px-[220px]">
+        <section className="pt-14 px-4 xl:px-55">
             <div className="mx-auto container">
                 <section className="gap-8 grid grid-cols-1 md:grid-cols-2 items-center justify-center lg:gap-16">
                     <div ref={box}>
@@ -58,26 +58,33 @@ export default function About() {
                         </h1>
                         <div className="text-[#484242] font-light text-lg  mt-5 space-y-5">
                             <p ref={subtitle1}>
-                                Sam Omidiji's journey is a testament to
-                                diligence and compassion. Not only has he
-                                excelled in his studies and career, but he has
-                                also fostered a spirit of unity and generosity
-                                in every community he joins.
+                                Today we celebrate Sam, a person whose caring
+                                heart, diligence, and compassion shine in
+                                everything he does. His dedication to excellence
+                                has consistently set him apart, from his
+                                outstanding academic achievements to the
+                                remarkable progress he continues to make in his
+                                career.
                             </p>
                             <p ref={subtitle2}>
-                                Whether spearheading charity drives, mentoring
-                                youth, or developing innovative ideas at work,
-                                Sam's accomplishments continue to inspire those
-                                around him daily.
+                                Sam's spirit of unity and generosity brings
+                                people together, creating an environment where
+                                collaboration and kindness thrive. At work, his
+                                innovative ideas and forward-thinking approach
+                                reflect not only intelligence, but a deep
+                                commitment to making meaningful impact.
                             </p>
                             <p ref={subtitle3}>
-                                On this special day, we honor all that Sam has
-                                achieved and look forward to many more years of
-                                joy, progress, and profound impact.
+                                Sam's accomplishments are more than personal
+                                milestones, they are a daily source of
+                                inspiration to everyone around him. As he marks
+                                another year, we celebrate not just his
+                                successes, but the character, purpose, and
+                                positivity he brings into the lives of others.
                             </p>
                         </div>
                     </div>
-                    <figure className="w-full h-[510px]">
+                    <figure className="w-full h-127.5">
                         <Image
                             className="w-full h-full object-cover object-center"
                             src="/images/aboutImage.webp"
