@@ -79,9 +79,9 @@ export default function ViewMoments() {
                 <div className="grid grid-cols-1 mt-10 xl:mt-16 gap-5 md:grid-cols-3">
                     {data?.pages.flatMap((page) =>
                         page.data.map((item) => (
-                            <figure key={item.id} className="max-h-100">
+                            <figure key={item.id} className="h-108">
                                 <Image
-                                    className="w-full h-full object-cover"
+                                    className="w-full h-full object-cover object-top"
                                     src={item.imageUrl}
                                     width={320}
                                     height={360}
@@ -100,9 +100,9 @@ export default function ViewMoments() {
                         <button
                             onClick={() => fetchNextPage()}
                             disabled={isFetchingNextPage}
-                            className="text-white font-medium text-center active:scale-95 transition-transform duration-150 cursor-pointer rounded-xl py-3 mt-9 w-fit px-10 bg-[#6A0DAD] text-base"
+                            className="text-[#78716C] font-medium text-center active:scale-95 transition-transform duration-150 cursor-pointer rounded-xl py-3 mt-9 w-fit px-10 bg-[#EAE8E5] text-base"
                         >
-                            {isFetchingNextPage ? "loading..." : "View more"}
+                            {isFetchingNextPage ? "loading..." : "Load more"}
                         </button>
                     </section>
                 )}

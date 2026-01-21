@@ -108,9 +108,9 @@ export default function ViewWishes() {
                         <button
                             onClick={() => fetchNextPage()}
                             disabled={isFetchingNextPage}
-                            className="text-white font-medium active:scale-95 transition-transform duration-150 text-center cursor-pointer rounded-xl py-3 mt-9 w-fit px-10 bg-[#6A0DAD] text-base"
+                            className="text-[#78716C] font-medium active:scale-95 transition-transform duration-150 text-center cursor-pointer rounded-xl py-3 mt-9 w-fit px-10 bg-[#EAE8E5] text-base"
                         >
-                            {isFetchingNextPage ? "loading..." : "View more"}
+                            {isFetchingNextPage ? "loading..." : "Load more"}
                         </button>
                     </section>
                 )}

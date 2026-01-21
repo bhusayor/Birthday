@@ -11,12 +11,12 @@ const nav = [
     {
         id: 2,
         name: "Gallery",
-        path: "#gallery",
+        path: "/#gallery",
     },
     {
         id: 3,
         name: "Wishes",
-        path: "#wish",
+        path: "/#wish",
     },
 ];
 

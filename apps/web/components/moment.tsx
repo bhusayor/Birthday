@@ -73,65 +73,7 @@ export default function Moment() {
                         ))}
                     </div>
                 )}
-                <div className="mt-5">
-                    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-                        <div className="w-full h-108">
-                            <Image
-                                className="w-full h-full object-cover object-center"
-                                src="/images/IMG1-1.webp"
-                                width={600}
-                                height={500}
-                                alt="sam's Image"
-                            />
-                        </div>
 
-                        <div className="w-full h-108">
-                            <Image
-                                className="w-full h-full object-cover object-top"
-                                src="/images/IMG1-2.webp"
-                                width={600}
-                                height={500}
-                                alt="sam's Image"
-                            />
-                        </div>
-                        <div className="w-full h-108">
-                            <Image
-                                className="w-full h-full object-cover object-center"
-                                src="/images/IMG1-3.webp"
-                                width={600}
-                                height={500}
-                                alt="sam's Image"
-                            />
-                        </div>
-                        <div className="w-full h-108">
-                            <Image
-                                className="w-full h-full object-cover object-center"
-                                src="/images/IMG2-1.webp"
-                                width={491}
-                                height={432}
-                                alt="sam's Image"
-                            />
-                        </div>
-                        <div className="w-full h-108">
-                            <Image
-                                className="w-full h-full object-cover object-bottom-right"
-                                src="/images/IMG2-2.webp"
-                                width={491}
-                                height={432}
-                                alt="sam's Image"
-                            />
-                        </div>
-                        <div className="w-full h-108">
-                            <Image
-                                className="w-full h-full object-cover object-center"
-                                src="/images/IMG2-3.webp"
-                                width={491}
-                                height={432}
-                                alt="sam's Image"
-                            />
-                        </div>
-                    </div>
-                </div>
                 <Link
                     href="/view-moments"
                     className="text-white active:scale-95 w-58.75 transition-transform duration-150 font-medium block text-center rounded-xl py-3 mt-12 mx-auto bg-[#6A0DAD] text-base"
