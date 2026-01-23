@@ -69,18 +69,21 @@ export default function MessageWall() {
     }, []);
 
     const CARD_WIDTH = 302 + 28;
+    const isIOS =
+        typeof window !== "undefined" &&
+        /iPad|iPhone|iPod/.test(navigator.userAgent);
 
     const moveToEnd = () => {
         scrollRef.current?.scrollBy({
             left: CARD_WIDTH,
-            behavior: "smooth",
+            behavior: isIOS ? "auto" : "smooth",
         });
     };
 
     const moveToStart = () => {
         scrollRef.current?.scrollBy({
             left: -CARD_WIDTH,
-            behavior: "smooth",
+            behavior: isIOS ? "auto" : "smooth",
         });
     };
 
